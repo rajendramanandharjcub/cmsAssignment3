@@ -16,8 +16,12 @@
 
 defined('ABSPATH') or die('You cant access this file');
 
- // including tweet-my-feed plugin settings menu
+
+ // create tweet-my-feed plugin settings menu
 include("tweet-my-feed-setting.php");
+
+
+// twitter code
 
 add_shortcode( 'mi-twitter-feed', 'twitter_feed_shortcode');
 function twitter_feed_shortcode($atts)
@@ -76,8 +80,9 @@ function twitter_feed_shortcode($atts)
     // $json now contains the response from the Twitter API, which should include however many tweets we asked for.
 
         ?>
+        
 
-         <!-- twitter   -->
+        <!-- twitter   -->
         
    <div class="container">
       <div class="col-md-4">
@@ -130,7 +135,9 @@ function twitter_feed_shortcode($atts)
          </div>
       </div>
    </div>
-        
+   <!-- <div class="col-md-4">
+   </div>
+</div> -->
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 <script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
 
