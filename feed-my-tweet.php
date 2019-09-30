@@ -13,3 +13,6 @@
   Text Domain: feed-my-tweet
  */
 
+
+defined('ABSPATH') or die('You cant access this file');
+
