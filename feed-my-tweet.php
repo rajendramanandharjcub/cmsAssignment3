@@ -76,6 +76,60 @@ function twitter_feed_shortcode($atts)
     // $json now contains the response from the Twitter API, which should include however many tweets we asked for.
 
         ?>
+
+         <!-- twitter   -->
+        
+   <div class="container">
+      <div class="col-md-4">
+         <div class="panel panel-info">
+            <div class="panel-heading">
+               <h3 class="panel-title"><i class="fa fa-twitter-square" aria-hidden="true"></i>
+                  Tweet My Feed
+               </h3>
+            </div>
+            <?php
+                    // Loop through them for output
+                    foreach(json_decode($json) as $status) {
+                     // Convert links back into actual links, otherwise they're just output as text
+                        $enhancedStatus = htmlentities($status->full_text, ENT_QUOTES, 'UTF-8');
+                        $enhancedStatus = preg_replace('/http:\/\/t.co\/([a-zA-Z0-9]+)/i', '<a href="http://t.co/$1">http://$1</a>', $enhancedStatus);
+                        $enhancedStatus = preg_replace('/https:\/\/t.co\/([a-zA-Z0-9]+)/i', '<a href="https://t.co/$1">http://$1</a>', $enhancedStatus);
+                        // Finally, output a simple paragraph containing the tweet and a link back to the Twitter account itself. You can format/style this as you like.
+                        ?>
+            <div class="panel-body">
+                            
+              <div class="card">
+                <div class="card-body ">
+                  <div class="card-header">
+                    <img src="<?php echo $status->user->profile_image_url_https; ?>" class="img-circle card-img-left" style="-webkit-border-radius: initial; border-radius: 50%;"> 
+                    <span class="card-title">
+                    <a class="twitter-timeline" data-width="100%" href="https://twitter.com/intent/user?screen_name=<?php echo $screen_name; ?>" target="_blank">Tweets by @<?php echo $screen_name; ?>  </a>
+                  </span>
+                  </div>
+                  
+                  <div class="card-body text-center ">
+                    <blockquote class="blockquote mb-0">
+                    <p class="card-text">
+                      <?php echo $enhancedStatus; ?>
+                    </p>
+                  </blockquote>
+                    
+                  </div>
+                  <footer class="blockquote-footer">
+                    via Twitter - <p><?php echo $status->user->name; ?>
+                  </footer>
+                   
+                  
+                </div>
+        </div>
+
+            </div>
+            <?php 
+            } 
+          ?>
+         </div>
+      </div>
+   </div>
         
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 <script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
